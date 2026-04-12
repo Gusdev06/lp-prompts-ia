@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Oferta Exclusiva — Curso Influencer de IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#000;color:#fff;overflow-x:hidden;min-height:100vh}
+img{max-width:100%;height:auto}
+a{text-decoration:none;color:inherit}
+
+/* CONFIRMACAO TOPO */
+.confirm-bar{background:#00A13C;padding:12px 16px;text-align:center}
+.confirm-bar p{font-weight:700;font-size:.875rem;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* CONTAINER */
+.container{max-width:520px;margin:0 auto;padding:0 16px}
+
+/* MAIN */
+.main{padding:24px 0 32px}
+
+/* HEADLINE */
+.headline{font-size:clamp(1.25rem,4vw,1.75rem);font-weight:900;line-height:1.2;text-align:center;margin-bottom:8px}
+.headline span{color:#00A13C}
+.sub-hook{text-align:center;color:#b3b3b3;font-size:.9rem;margin-bottom:24px}
+
+/* VIDEO */
+.video-wrap{width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;border:1px solid #222;margin-bottom:24px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.video-wrap iframe{width:100%;height:100%;border:none}
+.video-placeholder{text-align:center;color:#666;font-size:.875rem;padding:20px}
+
+/* BULLETS */
+.bullets{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.bullet{display:flex;align-items:flex-start;gap:12px;background:#111;border:1px solid #222;border-radius:10px;padding:12px 14px}
+.bullet-icon{flex-shrink:0;width:28px;height:28px;border-radius:6px;background:#00A13C;display:flex;align-items:center;justify-content:center;font-size:.875rem}
+.bullet p{font-size:.875rem;font-weight:600;color:#fff;line-height:1.4}
+.bullet p strong{color:#00A13C}
+
+/* PRECO */
+.price-box{background:#111;border:2px solid #00A13C;border-radius:16px;padding:24px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden}
+.price-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00A13C,#D9FF02,#00A13C)}
+.price-tag{display:inline-block;background:#00A13C;color:#fff;font-size:.7rem;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.price-old{color:hsl(0,84%,60%);text-decoration:line-through;font-size:1.1rem;font-weight:700}
+.price-new{font-size:3rem;font-weight:900;color:#00A13C;line-height:1;margin:4px 0}
+.price-sub{color:#888;font-size:.8rem;font-weight:500}
+.price-urgency{color:#FF6B00;font-size:.75rem;font-weight:700;margin-top:8px}
+
+/* CTA */
+.cta-btn{display:block;width:100%;text-align:center;font-weight:900;font-size:1.1rem;padding:18px 24px;border-radius:10px;background:#00A13C;color:#fff;border:none;cursor:pointer;box-shadow:0 0 30px rgba(0,161,60,.4);animation:pulsar 1.5s ease-in-out infinite;transition:background .3s;margin-bottom:8px}
+.cta-btn:hover{background:#008A33}
+@keyframes pulsar{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+/* GARANTIA */
+.garantia{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:20px}
+.garantia span{font-size:.75rem;color:#888}
+
+/* RECUSA */
+.recusa{display:block;text-align:center;color:#555;font-size:.8rem;padding:8px;cursor:pointer;transition:color .2s}
+.recusa:hover{color:#888}
+
+/* DIVISOR */
+.divider{width:100%;height:1px;background:#222;margin:16px 0}
+
+/* O QUE TEM DENTRO */
+.whats-inside{margin-bottom:24px}
+.whats-inside h3{font-size:1rem;font-weight:800;text-align:center;margin-bottom:16px;color:#fff}
+.module{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1a1a1a}
+.module:last-child{border-bottom:none}
+.module-num{flex-shrink:0;width:24px;height:24px;border-radius:6px;background:#00A13C;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;color:#fff}
+.module p{font-size:.8rem;font-weight:600;color:#ccc}
+
+/* RESPONSIVO */
+@media(max-width:480px){
+  .headline{font-size:1.2rem}
+  .price-new{font-size:2.5rem}
+  .cta-btn{font-size:1rem;padding:16px 20px}
+  .bullet{padding:10px 12px}
+  .bullet p{font-size:.8rem}
+  .price-box{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- BARRA DE CONFIRMACAO -->
+<div class="confirm-bar">
+<p>✅ Seus 300+ prompts estao confirmados!</p>
+</div>
+
+<div class="container">
+<div class="main">
+
+<!-- HOOK -->
+<p style="text-align:center;color:#FF6B00;font-size:.75rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px">⚠️ ESPERA — OFERTA UNICA</p>
+
+<!-- HEADLINE -->
+<h1 class="headline">
+Os prompts geram a imagem. Mas <span>quem transforma isso em dinheiro</span> e o metodo por tras.
+</h1>
+<p class="sub-hook">Sua influencer vai ficar linda. Mas linda e parada nao paga boleto.</p>
+
+<!-- VIDEO -->
+<div class="video-wrap">
+<!-- TROCAR pelo embed do VTurb ou YouTube -->
+<div class="video-placeholder">
+<p>🎬 VSL DO UPSELL AQUI</p>
+<p style="font-size:.7rem;margin-top:4px;color:#444">Cole o embed do VTurb ou YouTube</p>
+</div>
+</div>
+
+<!-- BULLETS -->
+<div class="bullets">
+<div class="bullet">
+<div class="bullet-icon">🎯</div>
+<p><strong>Monetizacao real</strong> — como transformar sua influencer em renda (afiliado, servico ou parceria com marcas)</p>
+</div>
+<div class="bullet">
+<div class="bullet-icon">📱</div>
+<p><strong>Estrategia de postagem</strong> — o que postar, quando, onde e como viralizar sem depender de sorte</p>
+</div>
+<div class="bullet">
+<div class="bullet-icon">💰</div>
+<p><strong>Resultados comprovados</strong> — alunos faturando de R$ 800/semana a R$ 1.500 por contrato</p>
+</div>
+</div>
+
+<!-- O QUE TEM DENTRO -->
+<div class="whats-inside">
+<h3>O que voce vai aprender:</h3>
+<div class="module"><div class="module-num">1</div><p>Criar sua influencer do zero (passo a passo completo)</p></div>
+<div class="module"><div class="module-num">2</div><p>Montar o perfil perfeito no Instagram e TikTok</p></div>
+<div class="module"><div class="module-num">3</div><p>Estrategia de conteudo que viraliza (rotina de postagem)</p></div>
+<div class="module"><div class="module-num">4</div><p>Como vender como afiliado sem aparecer (Shopee, TikTok Shop)</p></div>
+<div class="module"><div class="module-num">5</div><p>Como vender esse servico pra empresas por R$ 2.000+</p></div>
+<div class="module"><div class="module-num">6</div><p>Como fechar parcerias pagas com marcas</p></div>
+<div class="module"><div class="module-num">7</div><p>Escala: multiplas contas, multiplas influencers, automacao</p></div>
+</div>
+
+<!-- PRECO -->
+<div class="price-box">
+<span class="price-tag">Exclusivo pra quem acabou de comprar</span>
+<p class="price-old">R$ 97,00</p>
+<p class="price-new">R$ 67</p>
+<p class="price-sub">Cobrado no mesmo cartao. Acesso imediato.</p>
+<p class="price-urgency">Essa pagina nao volta. Depois sobe pra R$ 97.</p>
+</div>
+
+<!-- CTA -->
+<a href="LINK_UPSELL_CURSO_67" class="cta-btn">SIM, QUERO O CURSO POR R$ 67</a>
+
+<!-- GARANTIA -->
+<div class="garantia">
+<span>🛡️</span>
+<span>Garantia de 7 dias. Nao gostou, devolvemos tudo.</span>
+</div>
+
+<!-- RECUSA -->
+<a href="LINK_DOWNSELL_OU_MEMBROS" class="recusa">Nao obrigado, so quero os prompts →</a>
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Ultima Chance — Modulo de Monetizacao</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#000;color:#fff;overflow-x:hidden;min-height:100vh}
+a{text-decoration:none;color:inherit}
+.container{max-width:520px;margin:0 auto;padding:0 16px}
+.main{padding:32px 0}
+
+/* HEADER */
+.top-bar{background:#FF6B00;padding:10px 16px;text-align:center}
+.top-bar p{font-weight:700;font-size:.8rem;color:#fff}
+
+/* HEADLINE */
+.headline{font-size:clamp(1.15rem,3.5vw,1.5rem);font-weight:900;line-height:1.25;text-align:center;margin-bottom:8px}
+.sub{text-align:center;color:#b3b3b3;font-size:.85rem;margin-bottom:24px;line-height:1.5}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.check-item{display:flex;align-items:center;gap:10px}
+.check-icon{flex-shrink:0;width:20px;height:20px;border-radius:4px;background:#00A13C;display:flex;align-items:center;justify-content:center}
+.check-icon svg{width:12px;height:12px;color:#fff}
+.check-item p{font-size:.85rem;font-weight:600;color:#fff}
+
+/* PRECO */
+.price-box{background:#111;border:2px solid #FF6B00;border-radius:14px;padding:24px;text-align:center;margin-bottom:16px}
+.price-tag{display:inline-block;background:#FF6B00;color:#fff;font-size:.7rem;font-weight:800;padding:4px 12px;border-radius:99px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px}
+.price-old{color:hsl(0,84%,60%);text-decoration:line-through;font-size:1rem;font-weight:700}
+.price-new{font-size:2.75rem;font-weight:900;color:#FF6B00;line-height:1;margin:4px 0}
+.price-sub{color:#888;font-size:.8rem}
+
+/* CTA */
+.cta-btn{display:block;width:100%;text-align:center;font-weight:900;font-size:1.05rem;padding:18px 24px;border-radius:10px;background:#FF6B00;color:#fff;border:none;cursor:pointer;box-shadow:0 0 25px rgba(255,107,0,.4);animation:pulsar 1.5s ease-in-out infinite;transition:background .3s;margin-bottom:8px}
+.cta-btn:hover{background:#E65100}
+@keyframes pulsar{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+
+/* GARANTIA */
+.garantia{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px}
+.garantia span{font-size:.75rem;color:#888}
+
+/* RECUSA */
+.recusa{display:block;text-align:center;color:#555;font-size:.8rem;padding:8px;cursor:pointer;transition:color .2s}
+.recusa:hover{color:#888}
+
+@media(max-width:480px){
+  .headline{font-size:1.1rem}
+  .price-new{font-size:2.25rem}
+  .cta-btn{font-size:.95rem;padding:16px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+<p>⚠️ ESPERA — TENHO UMA ULTIMA PROPOSTA PRA VOCE</p>
+</div>
+
+<div class="container">
+<div class="main">
+
+<h1 class="headline">
+Tudo bem, sem o curso completo. Mas pelo menos leva o modulo que <span style="color:#FF6B00">gera dinheiro</span>.
+</h1>
+<p class="sub">So a parte de monetizacao — como transformar sua influencer em vendas reais. Sem enrolacao, direto ao ponto.</p>
+
+<!-- CHECKLIST -->
+<div class="checklist">
+<div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Estrategia de postagem que viraliza</p></div>
+<div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Como fazer sua primeira venda como afiliado</p></div>
+<div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Como abordar marcas pra fechar parceria paga</p></div>
+<div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Script de prospecao pra vender servico de IA</p></div>
+<div class="check-item"><div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><p>Rotina diaria de 30 minutos que gera resultado</p></div>
+</div>
+
+<!-- PRECO -->
+<div class="price-box">
+<span class="price-tag">Oferta de saida — so agora</span>
+<p class="price-old">R$ 67,00</p>
+<p class="price-new">R$ 37</p>
+<p class="price-sub">Cobrado no mesmo cartao. Acesso imediato.</p>
+</div>
+
+<!-- CTA -->
+<a href="LINK_DOWNSELL_37" class="cta-btn">QUERO O MODULO POR R$ 37</a>
+
+<!-- GARANTIA -->
+<div class="garantia">
+<span>🛡️</span>
+<span>Garantia de 7 dias. Nao gostou, devolvemos tudo.</span>
+</div>
+
+<!-- RECUSA -->
+<a href="LINK_AREA_MEMBROS" class="recusa">Nao, so quero os prompts →</a>
+
+</div>
+</div>
+
+</body>
+</html>
