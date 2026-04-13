@@ -27,7 +27,7 @@ a{text-decoration:none;color:inherit}
 .sub-hook{text-align:center;color:#b3b3b3;font-size:.9rem;margin-bottom:24px}
 
 /* VIDEO */
-.video-wrap{width:100%;aspect-ratio:16/9;background:#111;border-radius:12px;border:1px solid #222;margin-bottom:24px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.video-wrap{width:100%;max-width:320px;margin-left:auto;margin-right:auto;aspect-ratio:9/16;background:#111;border-radius:12px;border:1px solid #222;margin-bottom:24px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .video-wrap iframe{width:100%;height:100%;border:none}
 .video-placeholder{text-align:center;color:#666;font-size:.875rem;padding:20px}
 
@@ -103,11 +103,10 @@ Os prompts geram a imagem. Mas <span>quem transforma isso em dinheiro</span> e o
 
 <!-- VIDEO -->
 <div class="video-wrap">
-<!-- TROCAR pelo embed do VTurb ou YouTube -->
-<div class="video-placeholder">
-<p>🎬 VSL DO UPSELL AQUI</p>
-<p style="font-size:.7rem;margin-top:4px;color:#444">Cole o embed do VTurb ou YouTube</p>
-</div>
+<vturb-smartplayer id="vid-69dd0dc09aeab1398280d264" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+<script type="text/javascript">
+var s=document.createElement("script"); s.src="https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/69dd0dc09aeab1398280d264/v4/player.js", s.async=!0,document.head.appendChild(s);
+</script>
 </div>
 
 <!-- BULLETS -->
@@ -141,14 +140,14 @@ Os prompts geram a imagem. Mas <span>quem transforma isso em dinheiro</span> e o
 <!-- PRECO -->
 <div class="price-box">
 <span class="price-tag">Exclusivo pra quem acabou de comprar</span>
-<p class="price-old">R$ 97,00</p>
-<p class="price-new">R$ 67</p>
+<p class="price-old">R$ 297,00</p>
+<p class="price-new">R$ 97</p>
 <p class="price-sub">Cobrado no mesmo cartao. Acesso imediato.</p>
-<p class="price-urgency">Essa pagina nao volta. Depois sobe pra R$ 97.</p>
+<p class="price-urgency">Essa pagina nao volta. Depois sobe pra R$ 297.</p>
 </div>
 
 <!-- CTA -->
-<a href="LINK_UPSELL_CURSO_67" class="cta-btn">SIM, QUERO O CURSO POR R$ 67</a>
+<a href="https://pay.hub.la/Ng1vMD8Jhb6vlCgvanKH" class="cta-btn">SIM, QUERO O CURSO POR R$ 97</a>
 
 <!-- GARANTIA -->
 <div class="garantia">
@@ -156,8 +155,6 @@ Os prompts geram a imagem. Mas <span>quem transforma isso em dinheiro</span> e o
 <span>Garantia de 7 dias. Nao gostou, devolvemos tudo.</span>
 </div>
 
-<!-- RECUSA -->
-<a href="LINK_DOWNSELL_OU_MEMBROS" class="recusa">Nao obrigado, so quero os prompts →</a>
 
 </div>
 </div>
