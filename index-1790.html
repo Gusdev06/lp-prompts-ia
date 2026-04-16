@@ -35,6 +35,10 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
   <style>
+    html {
+      scroll-behavior: smooth
+    }
+
     *,
     *::before,
     *::after {
@@ -792,6 +796,135 @@
       color: #00A13C
     }
 
+    /* PLANS GRID */
+    .plans-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 24px;
+      align-items: stretch
+    }
+
+    .plans-grid .offer-card {
+      max-width: 100%;
+      margin: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column
+    }
+
+    .plans-grid .offer-card .offer-items {
+      flex: 1
+    }
+
+    .offer-card.basic {
+      background: hsl(0, 0%, 6%);
+      border-color: hsl(0, 0%, 15%);
+      opacity: .9
+    }
+
+    .offer-card.basic .offer-header {
+      background: hsl(0, 0%, 18%)
+    }
+
+    .offer-card.basic .offer-header h2 {
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      color: #bbb
+    }
+
+    .offer-card.basic .offer-item p {
+      color: #999
+    }
+
+    .offer-card.basic .offer-item.disabled p {
+      color: #666;
+      text-decoration: line-through
+    }
+
+    .offer-card.basic .offer-item.disabled .check {
+      background: #3a0a0a
+    }
+
+    .offer-card.basic .offer-item.disabled .check svg {
+      color: hsl(0, 84%, 60%)
+    }
+
+    .offer-card.basic .offer-price {
+      color: #bbb;
+      font-size: 2.25rem
+    }
+
+    .offer-card.basic .cta-btn {
+      background: hsl(0, 0%, 22%);
+      box-shadow: none
+    }
+
+    .offer-card.basic .cta-btn:hover {
+      background: hsl(0, 0%, 30%)
+    }
+
+    .offer-card.featured {
+      position: relative;
+      border: 2px solid #00A13C;
+      box-shadow: 0 25px 60px rgba(0, 161, 60, .25);
+      overflow: visible
+    }
+
+    .offer-card.featured .offer-header {
+      border-radius: 14px 14px 0 0
+    }
+
+    .offer-banner {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 14px 14px 0 0
+    }
+
+    .offer-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #FFB800;
+      color: #000;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      z-index: 2;
+      white-space: nowrap
+    }
+
+    @media(max-width:768px) {
+      .plans-grid {
+        grid-template-columns: 1fr;
+        gap: 48px
+      }
+
+      .plans-grid .offer-card.featured {
+        order: -1;
+        margin-top: 16px
+      }
+
+      .plans-grid .offer-card.basic {
+        order: 1
+      }
+
+      .offer-badge {
+        font-size: .7rem;
+        padding: 5px 14px
+      }
+
+      .offer-card.basic .offer-price {
+        font-size: 2rem
+      }
+    }
+
     /* GUARANTEE */
     .guarantee {
       background: #000;
@@ -1326,13 +1459,13 @@
           <button class="hero-arrow next" onclick="heroGoTo(window._heroIdx+1)">&#8250;</button>
           <div class="hero-carousel-track" id="heroTrack">
             <img decoding="async"
-              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnx9w759004omz018ek7xt48/da557bed-4194-4d5e-9696-30cc31300191/output_0.png"
+              src="assets/hero-carousel-1.webp"
               alt="Influencer de IA 1" />
             <img decoding="async"
-              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnx9wllj004umz01aws4bhuc/1e6b0766-8557-41e3-af29-a94fda1b19ee/output_0.png"
+              src="assets/hero-carousel-2.webp"
               alt="Influencer de IA 2" />
             <img decoding="async"
-              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnx9znfa0055mz01r72gg3pq/c0122765-445f-40f4-b65c-1f6cb2bc3f17/output_0.png"
+              src="assets/hero-carousel-3.webp"
               alt="Influencer de IA 3" />
           </div>
           <div class="hero-dots">
@@ -1355,7 +1488,7 @@
 
   <!-- CTA -->
   <div style="background:#fff;padding:0 16px 32px">
-    <a href="https://pay.hub.la/dkugrAJvuepvSaXd3y8G" class="cta-btn">QUERO OS 300+ PROMPTS AGORA</a>
+    <a href="#offer" class="cta-btn">QUERO OS 300+ PROMPTS AGORA</a>
   </div>
 
   <!-- DOR -->
@@ -1568,7 +1701,7 @@
             src="https://replicate.delivery/xezq/tncR0QJv8TpvLFLA2CQqCZCvEb8ITsQ7SEYySnkmf6QDeOaWA/tmp1qacutzy.jpg"
             alt="Prompt generico" style="aspect-ratio:3/4;object-fit:cover" /></div>
         <div class="reveal from-right"><img decoding="async"
-            src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnve30ki006dqq01h7qy9mje/d1de34d5-9de4-4843-9d2c-80d8175cd530/output_0.png"
+            src="assets/before-after-nosso.webp"
             alt="Nosso prompt" style="aspect-ratio:3/4;object-fit:cover" /></div>
         <div class="reveal from-up" data-delay="200">
           <h3 class="red">Prompt Generico</h3>
@@ -1697,7 +1830,7 @@
         </div>
         <div class="reveal from-up" data-delay="250">
           <div class="cat-card-img"><img decoding="async"
-              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnxa58zw005emz01w6smcc0l/5b7bc1f7-6182-4d94-a49e-a26a529afc78/output_0.png"
+              src="assets/categoria-fitness.webp"
               alt="Fitness e Saude" />
             <div class="cat-card-label">
               <p class="name">Fitness & Saude</p>
@@ -1707,7 +1840,7 @@
         </div>
         <div class="reveal from-up" data-delay="300">
           <div class="cat-card-img"><img decoding="async"
-              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmmycv4od003bmr01k33gj4xk/10dc2083-88e9-43e0-bc2b-013c41f7ebcd/output_0.png"
+              src="assets/categoria-expressoes.webp"
               alt="Expressoes Faciais" />
             <div class="cat-card-label">
               <p class="name">Expressoes Faciais</p>
@@ -1725,7 +1858,7 @@
       <p style="font-size:1.25rem;font-weight:700;margin-bottom:16px">Tudo isso por <span
           style="color:hsl(0,84%,60%);text-decoration:line-through">R$ 197</span> <span
           style="color:#00A13C;font-weight:900;font-size:1.5rem">R$ 17,90</span></p>
-      <a href="https://pay.hub.la/dkugrAJvuepvSaXd3y8G" class="cta-btn">QUERO OS 300+ PROMPTS AGORA</a>
+      <a href="#offer" class="cta-btn">QUERO OS 300+ PROMPTS AGORA</a>
     </div>
   </section>
 
@@ -1772,72 +1905,130 @@
   </section>
 
   <!-- OFFER -->
-  <section class="offer">
+  <section class="offer" id="offer">
     <div class="container">
       <div class="reveal from-up">
-        <a href="https://pay.hub.la/dkugrAJvuepvSaXd3y8G" class="offer-card" style="text-decoration:none">
-          <div class="offer-header">
-            <h2>PACK 300+ PROMPTS PROFISSIONAIS</h2>
-          </div>
-          <div class="offer-items">
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>300+ Prompts testados e organizados por categoria</p>
+        <div class="plans-grid">
+
+          <!-- PLANO BÁSICO (R$ 17,90) -->
+          <a href="https://pay.hub.la/dkugrAJvuepvSaXd3y8G" class="offer-card basic" style="text-decoration:none">
+            <div class="offer-header">
+              <h2>PLANO BASICO</h2>
             </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Prompts pra fotos, videos, UGC, cenarios, looks e mais</p>
+            <div class="offer-items">
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Pack de 300 Prompts pra Influencer de IA Realista</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Tutorial das IAs gratuitas pra fotos e videos</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Guia de Consistencia Facial</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Guia de Monetizacao Rapida (5 formas de lucrar)</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Licenca comercial + atualizacoes vitaliciamente</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Garantia incondicional de 7 dias</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
+                <p>Suporte prioritario no WhatsApp</p>
+              </div>
             </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Otimizados pra IAs gratuitas (voce nao paga ferramenta)</p>
+            <div class="offer-cta">
+              <p class="offer-price">R$ 17,90</p>
+              <span class="cta-btn" style="max-width:100%">COMPRAR PLANO BASICO</span>
             </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Bonus: Tutorial das IAs gratuitas pra fotos e videos</p>
+          </a>
+
+          <!-- PLANO COMPLETO (R$ 24,90) -->
+          <a href="https://pay.hub.la/7i2VZu725bdKo7IIOy8b" class="offer-card featured" style="text-decoration:none">
+            <div class="offer-badge">⭐ MAIS ESCOLHIDO</div>
+            <img class="offer-banner" src="assets/banner-plano-profissional.webp" alt="Pack 300+ Prompts de IA Realista com IA Gratuita" loading="eager" />
+            <div class="offer-items">
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>300+ Prompts testados e organizados por categoria</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Prompts pra fotos, videos, UGC, cenarios, looks e mais</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Otimizados pra IAs gratuitas (voce nao paga ferramenta)</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Bonus: Tutorial das IAs gratuitas pra fotos e videos</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Bonus: Guia de Consistencia Facial</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Bonus: Guia de Monetizacao Rapida (5 formas de lucrar)</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Licenca comercial + atualizacoes vitaliciamente</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p>Garantia incondicional de 7 dias</p>
+              </div>
             </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Bonus: Guia de Consistencia Facial</p>
+            <div class="offer-cta">
+              <p style="color:hsl(0,84%,60%);text-decoration:line-through;font-weight:700;margin-bottom:4px">de R$ 197,00</p>
+              <p class="offer-price">R$ 24,90</p>
+              <p style="color:#999;font-size:.8rem;margin-bottom:16px">pagamento unico — menos que um cafe</p>
+              <span class="cta-btn" style="max-width:100%">QUERO O PACOTE COMPLETO</span>
+              <p style="color:#666;font-size:.7rem;margin-top:12px">Acesso imediato apos confirmacao do pagamento</p>
             </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Bonus: Guia de Monetizacao Rapida (5 formas de lucrar)</p>
-            </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Licenca comercial + atualizacoes vitaliciamente</p>
-            </div>
-            <div class="offer-item">
-              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <path d="M20 6L9 17l-5-5" />
-                </svg></div>
-              <p>Garantia incondicional de 7 dias</p>
-            </div>
-          </div>
-          <div class="offer-cta">
-            <p style="color:hsl(0,84%,60%);text-decoration:line-through;font-weight:700;margin-bottom:4px">de R$ 197,00
-            </p>
-            <p class="offer-price">R$ 17,90</p>
-            <p style="color:#999;font-size:.8rem;margin-bottom:16px">pagamento unico — menos que um cafe</p>
-            <span class="cta-btn" style="max-width:100%">QUERO OS 300+ PROMPTS AGORA</span>
-            <p style="color:#666;font-size:.7rem;margin-top:12px">Acesso imediato apos confirmacao do pagamento</p>
-          </div>
-        </a>
+          </a>
+
+        </div>
       </div>
     </div>
   </section>
@@ -1905,7 +2096,7 @@
   <!-- CTA FINAL -->
   <section style="background:#000;padding:0 0 48px">
     <div class="container text-center">
-      <a href="https://pay.hub.la/dkugrAJvuepvSaXd3y8G" class="cta-btn">QUERO OS 300+ PROMPTS POR R$ 17,90</a>
+      <a href="#offer" class="cta-btn">QUERO OS 300+ PROMPTS POR R$ 17,90</a>
       <p style="color:#666;font-size:.7rem;margin-top:12px">Acesso imediato. Garantia de 7 dias. Pagamento seguro.</p>
     </div>
   </section>
