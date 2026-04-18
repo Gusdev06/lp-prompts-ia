@@ -714,6 +714,106 @@
       font-size: 1.5rem
     }
 
+    /* UNCENSORED AI */
+    .uncensored-section {
+      padding: 48px 0;
+      background: radial-gradient(ellipse at top, hsla(0, 84%, 30%, .25) 0%, #000 60%)
+    }
+
+    .uncensored-card {
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid hsla(0, 84%, 60%, .4);
+      border-radius: 16px;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, hsla(0, 84%, 12%, .8), hsl(0, 0%, 6%));
+      position: relative;
+      overflow: hidden
+    }
+
+    .uncensored-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, hsl(0, 84%, 50%), hsl(25, 95%, 55%))
+    }
+
+    .uncensored-tag {
+      display: inline-block;
+      background: hsl(0, 84%, 50%);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      text-transform: uppercase
+    }
+
+    .uncensored-card h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 12px
+    }
+
+    .uncensored-card h2 .flame {
+      color: hsl(25, 95%, 55%)
+    }
+
+    .uncensored-card h2 .strike {
+      color: hsl(0, 84%, 60%);
+      text-decoration: line-through;
+      text-decoration-thickness: 3px;
+      opacity: .85
+    }
+
+    .uncensored-card > p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, .85);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 640px
+    }
+
+    .uncensored-list {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 8px
+    }
+
+    @media(min-width: 640px) {
+      .uncensored-card {
+        padding: 40px
+      }
+      .uncensored-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 24px
+      }
+    }
+
+    .uncensored-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .95rem;
+      color: #fff
+    }
+
+    .uncensored-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: hsl(25, 95%, 55%);
+      box-shadow: 0 0 12px hsl(25, 95%, 55%);
+      flex-shrink: 0;
+      margin-top: 7px
+    }
+
     /* OFFER */
     .offer {
       background: #000;
@@ -1610,6 +1710,14 @@
               <p>Licenca comercial + atualizacoes vitaliciamente</p>
             </div>
           </div>
+          <div class="reveal from-up" data-delay="400">
+            <div class="benefit-item">
+              <div class="benefit-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg></div>
+              <p><strong>Acesso a IA SEM CENSURA</strong> pra gerar o que as outras bloqueiam 🔥</p>
+            </div>
+          </div>
         </div>
         <div class="reveal from-right" data-delay="200">
           <div class="benefits-image">
@@ -1848,6 +1956,16 @@
             </div>
           </div>
         </div>
+        <div class="reveal from-up" data-delay="350">
+          <div class="cat-card-img"><img decoding="async"
+              src="https://cdn.geraew.com.br/storage/v1/object/public/ai-generations/generations/cmnpgnivv000hyda0y4uz62nq/5be61f71-40fb-40b1-9db5-2dcc530828ef/output_0.png"
+              alt="Nicho Hot" />
+            <div class="cat-card-label">
+              <p class="name">Nicho Hot</p>
+              <p class="count">120+ prompts</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1859,6 +1977,26 @@
           style="color:hsl(0,84%,60%);text-decoration:line-through">R$ 197</span> <span
           style="color:#00A13C;font-weight:900;font-size:1.5rem">R$ 9,90</span></p>
       <a href="#offer" class="cta-btn">QUERO OS 300+ PROMPTS AGORA</a>
+    </div>
+  </section>
+
+  <!-- IA SEM CENSURA -->
+  <section class="uncensored-section">
+    <div class="container">
+      <div class="reveal from-up">
+        <div class="uncensored-card">
+          <span class="uncensored-tag">🔥 NOVA FEATURE LIBERADA</span>
+          <h2>Acesso a uma <span class="flame">IA SEM CENSURA</span><br />pra gerar o que as outras <span class="strike">bloqueiam</span></h2>
+          <p>Chega de prompt bloqueado na hora de gerar conteudo mais ousado. Ao comprar hoje, voce recebe acesso a
+            ferramenta de IA SEM CENSURA que usamos pra gerar imagens e videos que ChatGPT, Gemini e Midjourney se recusam a criar.</p>
+          <div class="uncensored-list">
+            <div class="uncensored-item"><span class="dot"></span><span>Zero bloqueio de prompts "sensiveis"</span></div>
+            <div class="uncensored-item"><span class="dot"></span><span>Libera nichos hot, fitness e UGC pesado</span></div>
+            <div class="uncensored-item"><span class="dot"></span><span>Fotos e videos hiper-realistas sem filtro</span></div>
+            <div class="uncensored-item"><span class="dot"></span><span>Ideal pra quem vende em nichos agressivos</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1938,6 +2076,12 @@
                 <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                     <path d="M18 6L6 18M6 6l12 12" />
                   </svg></div>
+                <p>Acesso a IA SEM CENSURA 🔥</p>
+              </div>
+              <div class="offer-item disabled">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg></div>
                 <p>Guia de Monetizacao Rapida (5 formas de lucrar)</p>
               </div>
               <div class="offer-item disabled">
@@ -2005,6 +2149,12 @@
                     <path d="M20 6L9 17l-5-5" />
                   </svg></div>
                 <p>Bonus: Guia de Monetizacao Rapida (5 formas de lucrar)</p>
+              </div>
+              <div class="offer-item">
+                <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg></div>
+                <p><strong>Acesso a IA SEM CENSURA</strong> 🔥</p>
               </div>
               <div class="offer-item">
                 <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
