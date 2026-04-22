@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cómo Obtener Tus Créditos | gustagoat.ia</title>
+
+  <!-- UTMify -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    .page {
+      background: linear-gradient(180deg, #000 0%, hsl(140, 50%, 8%) 50%, #000 100%);
+      min-height: 100vh;
+      padding: 32px 16px 80px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #00A13C;
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 99px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    h1 .highlight {
+      background: #00A13C;
+      color: #fff;
+      padding: 2px 10px;
+      display: inline-block;
+    }
+
+    .subtitle {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: #b3b3b3;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.5;
+    }
+
+    .header-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    /* VIDEO */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 161, 60, .25);
+      border: 1px solid rgba(0, 161, 60, .3);
+    }
+
+    /* SECTIONS */
+    .section-title {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .section-title .highlight {
+      background: #D9FF02;
+      color: #000;
+      padding: 2px 10px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(0, 161, 60, .25);
+      border-radius: 16px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+    }
+
+    /* COUPONS */
+    .coupons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .coupon {
+      background: linear-gradient(135deg, #0a0a0a 0%, #121f14 100%);
+      border: 1px solid rgba(0, 161, 60, .4);
+      border-radius: 12px;
+      padding: 18px 16px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .coupon:hover {
+      transform: translateY(-2px);
+      border-color: #00A13C;
+    }
+
+    .coupon .plan {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .coupon .discount {
+      font-size: .85rem;
+      color: #b3b3b3;
+      margin-bottom: 10px;
+    }
+
+    .coupon .discount strong {
+      color: #D9FF02;
+      font-weight: 800;
+    }
+
+    .coupon .code {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: #000;
+      border: 1px dashed rgba(255, 255, 255, .25);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-family: 'Menlo', monospace;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #00E676;
+      letter-spacing: 1px;
+    }
+
+    .copy-btn {
+      background: #00A13C;
+      color: #fff;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      transition: background .2s ease;
+    }
+
+    .copy-btn:hover { background: #00c94a; }
+    .copy-btn.copied { background: #D9FF02; color: #000; }
+
+    /* LINKS */
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(135deg, #00A13C 0%, #007a2d 100%);
+      color: #fff;
+      padding: 18px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      transition: transform .2s ease, box-shadow .2s ease;
+      box-shadow: 0 6px 18px rgba(0, 161, 60, .25);
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 161, 60, .4);
+    }
+
+    .link-btn.alt {
+      background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+      border: 1px solid rgba(217, 255, 2, .4);
+      box-shadow: 0 6px 18px rgba(217, 255, 2, .15);
+    }
+
+    .link-btn.alt:hover {
+      box-shadow: 0 10px 24px rgba(217, 255, 2, .3);
+    }
+
+    .link-btn .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .link-btn .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-btn .content .title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .link-btn .content .url {
+      font-size: .78rem;
+      opacity: .8;
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    .link-btn .arrow { font-size: 1.3rem; opacity: .7; }
+
+    /* INFO CALLOUT */
+    .callout {
+      background: rgba(217, 255, 2, .08);
+      border-left: 4px solid #D9FF02;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-top: 20px;
+      font-size: .92rem;
+      line-height: 1.5;
+      color: #e5e5e5;
+    }
+
+    .callout strong { color: #D9FF02; }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      font-size: .8rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 540px) {
+      .card { padding: 22px 18px; }
+      .link-btn { padding: 14px 16px; gap: 12px; }
+      .link-btn .icon { width: 38px; height: 38px; }
+      .coupon { padding: 16px 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="container">
+
+      <!-- HEADER -->
+      <div class="header-wrap">
+        <span class="tag">🎥 Tutorial Exclusivo</span>
+        <h1>Cómo Obtener <span class="highlight">Tus Créditos</span></h1>
+        <p class="subtitle">
+          Mira este video paso a paso y descubre cómo activar tus créditos para empezar a crear tus propias influencers de IA hoy mismo.
+        </p>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="video-wrap">
+        <vturb-smartplayer id="vid-69e9389488365845bd02f872" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      </div>
+
+      <!-- COUPONS SECTION -->
+      <div class="card">
+        <h2 class="section-title">🎟️ <span class="highlight">Cupones de Descuento</span></h2>
+        <p style="text-align:center; color:#b3b3b3; margin-bottom:22px; font-size:.95rem;">
+          Usa el cupón correspondiente a tu plan al momento de suscribirte:
+        </p>
+
+        <div class="coupons-grid">
+          <div class="coupon">
+            <div class="plan">⚡ Starter</div>
+            <div class="discount"><strong>10% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT10</span>
+              <button class="copy-btn" data-code="GUSTAGOAT10">Copiar</button>
+            </div>
+          </div>
+
+          <div class="coupon">
+            <div class="plan">🚀 Basic</div>
+            <div class="discount"><strong>10% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT10</span>
+              <button class="copy-btn" data-code="GUSTAGOAT10">Copiar</button>
+            </div>
+          </div>
+
+          <div class="coupon">
+            <div class="plan">🎨 Creator</div>
+            <div class="discount"><strong>15% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT15</span>
+              <button class="copy-btn" data-code="GUSTAGOAT15">Copiar</button>
+            </div>
+          </div>
+
+          <div class="coupon">
+            <div class="plan">💎 Pro</div>
+            <div class="discount"><strong>17% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT17</span>
+              <button class="copy-btn" data-code="GUSTAGOAT17">Copiar</button>
+            </div>
+          </div>
+
+          <div class="coupon">
+            <div class="plan">🔥 Advanced</div>
+            <div class="discount"><strong>25% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT25</span>
+              <button class="copy-btn" data-code="GUSTAGOAT25">Copiar</button>
+            </div>
+          </div>
+
+          <div class="coupon">
+            <div class="plan">🏆 Studio</div>
+            <div class="discount"><strong>30% OFF</strong> de descuento</div>
+            <div class="code">
+              <span>GUSTAGOAT30</span>
+              <button class="copy-btn" data-code="GUSTAGOAT30">Copiar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>💡 Consejo:</strong> Copia el cupón de tu plan y pégalo en el checkout para aplicar tu descuento automáticamente.
+        </div>
+      </div>
+
+      <!-- LINKS SECTION -->
+      <div class="card">
+        <h2 class="section-title">🔗 <span class="highlight">Enlaces Importantes</span></h2>
+
+        <a href="https://www.geraew.com.br/" target="_blank" rel="noopener" class="link-btn">
+          <div class="icon">🎬</div>
+          <div class="content">
+            <div class="title">Acceder a GERAEW</div>
+            <div class="url">www.geraew.com.br</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="link-btn alt">
+          <div class="icon">📘</div>
+          <div class="content">
+            <div class="title">+300 Prompts en Notion</div>
+            <div class="url">Influencer A.I. — 300 Prompts</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <p class="footer">© gustagoat.ia — Todos los derechos reservados</p>
+
+    </div>
+  </div>
+
+  <!-- VTURB Player Script -->
+  <script type="text/javascript">
+    var s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/69e9389488365845bd02f872/v4/player.js";
+    s.async = !0;
+    document.head.appendChild(s);
+  </script>
+
+  <!-- Copy coupon script -->
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const code = btn.getAttribute('data-code');
+        navigator.clipboard.writeText(code).then(() => {
+          const original = btn.textContent;
+          btn.textContent = '¡Copiado!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.classList.remove('copied');
+          }, 1800);
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
