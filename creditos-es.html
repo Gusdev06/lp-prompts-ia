@@ -4,399 +4,1397 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cómo Obtener Tus Prompts | gustagoat.ia</title>
+  <title>Área de Miembros — gustagoat.ia</title>
 
   <!-- UTMify -->
   <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-subids async defer></script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #050505;
+      --bg-2: #0a0a0a;
+      --panel: #0d0d0d;
+      --panel-hi: #131313;
+      --green: #00A13C;
+      --green-soft: #00DA52;
+      --yellow: #D9FF02;
+      --bone: #F4F1EA;
+      --bone-dim: #a3a097;
+      --muted: #5a5854;
+      --line: rgba(244, 241, 234, 0.08);
+      --line-strong: rgba(244, 241, 234, 0.16);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: #000;
-      color: #fff;
+      font-family: 'Geist', sans-serif;
+      background: var(--bg);
+      color: var(--bone);
+      min-height: 100vh;
       overflow-x: hidden;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "ss01", "cv11";
+      letter-spacing: -0.005em;
     }
 
-    .page {
-      background: linear-gradient(180deg, #000 0%, hsl(140, 50%, 8%) 50%, #000 100%);
-      min-height: 100vh;
-      padding: 32px 16px 80px;
+    /* GRAIN */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.94 0 0 0 0 0.92 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 100;
+      mix-blend-mode: overlay;
     }
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
+    /* AMBIENT */
+    .ambient {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient.a1 {
+      top: -300px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,161,60,0.10), transparent 60%);
+    }
+    .ambient.a2 {
+      bottom: -250px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(217,255,2,0.04), transparent 60%);
     }
 
-    .tag {
-      display: inline-block;
-      background: #00A13C;
-      color: #fff;
-      font-size: .75rem;
-      font-weight: 800;
-      padding: 6px 16px;
-      border-radius: 99px;
-      letter-spacing: 1.5px;
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* PRIMITIVES */
+    .label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      font-weight: 500;
     }
 
-    h1 {
-      font-size: clamp(1.6rem, 4.5vw, 3rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 12px;
-      text-align: center;
+    .serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+    .ital { font-style: italic; }
+
+    /* TOPBAR */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 5, 5, 0.78);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 36px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
     }
 
-    h1 .highlight {
-      background: #00A13C;
-      color: #fff;
-      padding: 2px 10px;
-      display: inline-block;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-    .subtitle {
-      font-size: clamp(.95rem, 2vw, 1.15rem);
-      color: #b3b3b3;
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 32px;
-      line-height: 1.5;
+    .brand-mark {
+      width: 36px; height: 36px;
+      border: 1px solid var(--bone);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      position: relative;
+      color: var(--bone);
+    }
+    .brand-mark::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
     }
 
-    .header-wrap {
-      text-align: center;
+    .brand-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+    .brand-name em {
+      font-style: italic;
+      color: var(--bone-dim);
+    }
+
+    .topbar-center {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-self: center;
+    }
+
+    .progress-display {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+    }
+
+    .progress-display .count {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--bone-dim);
+      letter-spacing: 0.1em;
+    }
+    .progress-display .count strong {
+      color: var(--bone);
+      font-weight: 600;
+    }
+
+    .film {
+      display: flex;
+      gap: 3px;
+    }
+    .film-cell {
+      width: 16px; height: 7px;
+      background: var(--panel-hi);
+      border: 1px solid var(--line-strong);
+      transition: background 0.5s, border-color 0.5s, transform 0.3s;
+    }
+    .film-cell.done {
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+    .film-cell.current { transform: scaleY(1.4); }
+
+    .topbar-right {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .date-stamp {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      color: var(--bone);
+      width: 40px; height: 40px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: calc(100vh - 70px);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      border-right: 1px solid var(--line);
+      padding: 44px 32px 80px;
+      position: sticky;
+      top: 70px;
+      height: calc(100vh - 70px);
+      overflow-y: auto;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
+
+    .sidebar-section { margin-bottom: 44px; }
+
+    .sidebar-section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sidebar-section-head .label { color: var(--muted); }
+    .sidebar-section-head .roman {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--yellow);
+    }
+    .sidebar-section-head .count {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--bone-dim);
+      margin-left: auto;
+    }
+
+    .lesson {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      padding: 16px 8px;
+      cursor: pointer;
+      transition: background 0.3s, padding-left 0.3s;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .lesson:hover {
+      background: rgba(244, 241, 234, 0.025);
+      padding-left: 12px;
+    }
+    .lesson.active {
+      background: rgba(217, 255, 2, 0.04);
+    }
+    .lesson.active::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 1px;
+      background: var(--yellow);
+    }
+    .lesson.active::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    .lesson-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.1rem;
+      font-style: italic;
+      line-height: 1;
+      color: var(--muted);
+      transition: color 0.3s;
+      letter-spacing: -0.02em;
+    }
+    .lesson.active .lesson-num { color: var(--yellow); }
+    .lesson.completed .lesson-num { color: var(--green-soft); }
+
+    .lesson-body { padding-top: 4px; }
+
+    .lesson-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .lesson-meta .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+    .lesson.completed .lesson-meta .dot { background: var(--green-soft); }
+    .lesson.active .lesson-meta { color: var(--yellow); }
+    .lesson.active .lesson-meta .dot { background: var(--yellow); }
+
+    .lesson-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      color: var(--bone);
+      letter-spacing: -0.005em;
+    }
+    .lesson-title em { font-style: italic; }
+
+    /* QUICK LINK */
+    .quick-link {
+      display: grid;
+      grid-template-columns: 24px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 8px;
+      border-bottom: 1px solid var(--line);
+      transition: padding-left 0.3s, background 0.3s;
+    }
+    .quick-link:hover {
+      padding-left: 16px;
+      background: rgba(244, 241, 234, 0.025);
+    }
+    .quick-link .arrow-mark {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--yellow);
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .quick-link .qname {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.15rem;
+    }
+    .quick-link .qname em { font-style: italic; color: var(--bone-dim); }
+    .quick-link .qhost {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* MAIN */
+    .main {
+      padding: 64px 72px 100px;
+      max-width: 1140px;
+      position: relative;
+    }
+
+    /* META BAR */
+    .editorial-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 36px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .editorial-meta .label { color: var(--muted); }
+    .editorial-meta .label.accent { color: var(--yellow); }
+    .editorial-meta .divider {
+      width: 1px;
+      height: 12px;
+      background: var(--line-strong);
+    }
+
+    /* HERO */
+    .lesson-hero { margin-bottom: 56px; }
+    .lesson-hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2.6rem, 6.5vw, 5.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      font-weight: 400;
       margin-bottom: 28px;
+      transition: opacity 0.35s ease;
+    }
+    .lesson-hero h1 em { font-style: italic; }
+
+    .lesson-hero h1 .marker {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+    .lesson-hero h1 .marker::before {
+      content: '';
+      position: absolute;
+      bottom: 0.08em;
+      left: -0.08em;
+      right: -0.08em;
+      height: 0.42em;
+      background: var(--yellow);
+      z-index: -1;
+      transform: skew(-4deg);
+    }
+
+    .lesson-hero p {
+      font-size: 1.12rem;
+      line-height: 1.55;
+      color: var(--bone-dim);
+      max-width: 660px;
+      font-weight: 300;
+      transition: opacity 0.35s ease;
     }
 
     /* VIDEO */
-    .video-wrap {
+    .video-section { margin-bottom: 56px; }
+
+    .video-frame {
       position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto 40px;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 161, 60, .25);
-      border: 1px solid rgba(0, 161, 60, .3);
+      padding: 18px;
     }
-
-    /* SECTIONS */
-    .section-title {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-align: center;
+    .video-frame .corner {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 2px solid var(--bone);
+      pointer-events: none;
     }
+    .video-frame .corner.tl { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+    .video-frame .corner.tr { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+    .video-frame .corner.bl { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+    .video-frame .corner.br { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
-    .section-title .highlight {
-      background: #D9FF02;
-      color: #000;
-      padding: 2px 10px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, .04);
-      border: 1px solid rgba(0, 161, 60, .25);
-      border-radius: 16px;
-      padding: 28px 24px;
-      margin-bottom: 24px;
-    }
-
-    /* COUPONS */
-    .coupons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 14px;
-      margin-top: 8px;
-    }
-
-    .coupon {
-      background: linear-gradient(135deg, #0a0a0a 0%, #121f14 100%);
-      border: 1px solid rgba(0, 161, 60, .4);
-      border-radius: 12px;
-      padding: 18px 16px;
+    .video-inner {
       position: relative;
+      background: #000;
       overflow: hidden;
-      transition: transform .2s ease, border-color .2s ease;
     }
 
-    .coupon:hover {
-      transform: translateY(-2px);
-      border-color: #00A13C;
-    }
-
-    .coupon .plan {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .coupon .discount {
-      font-size: .85rem;
-      color: #b3b3b3;
-      margin-bottom: 10px;
-    }
-
-    .coupon .discount strong {
-      color: #D9FF02;
-      font-weight: 800;
-    }
-
-    .coupon .code {
+    .video-strip {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      background: #000;
-      border: 1px dashed rgba(255, 255, 255, .25);
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-family: 'Menlo', monospace;
-      font-size: .95rem;
-      font-weight: 700;
-      color: #00E676;
-      letter-spacing: 1px;
-    }
-
-    .copy-btn {
-      background: #00A13C;
-      color: #fff;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: .75rem;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      letter-spacing: .5px;
+      padding: 16px 6px 0;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      transition: background .2s ease;
+      color: var(--muted);
+      gap: 12px;
+      flex-wrap: wrap;
     }
-
-    .copy-btn:hover { background: #00c94a; }
-    .copy-btn.copied { background: #D9FF02; color: #000; }
-
-    /* LINKS */
-    .link-btn {
-      display: flex;
+    .rec-dot {
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
-      background: linear-gradient(135deg, #00A13C 0%, #007a2d 100%);
-      color: #fff;
-      padding: 18px 22px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 14px;
-      transition: transform .2s ease, box-shadow .2s ease;
-      box-shadow: 0 6px 18px rgba(0, 161, 60, .25);
+      gap: 9px;
+      color: var(--bone-dim);
+    }
+    .rec-dot::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 12px var(--yellow);
+      animation: blink 1.6s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
     }
 
-    .link-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 161, 60, .4);
+    /* ACTIONS */
+    .lesson-actions {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin-top: 28px;
+      border: 1px solid var(--line-strong);
     }
-
-    .link-btn.alt {
-      background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
-      border: 1px solid rgba(217, 255, 2, .4);
-      box-shadow: 0 6px 18px rgba(217, 255, 2, .15);
-    }
-
-    .link-btn.alt:hover {
-      box-shadow: 0 10px 24px rgba(217, 255, 2, .3);
-    }
-
-    .link-btn .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, .15);
+    .action-btn {
+      flex: 1;
+      padding: 20px 26px;
+      background: transparent;
+      border: none;
+      color: var(--bone);
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
+      gap: 10px;
+      border-right: 1px solid var(--line-strong);
+    }
+    .action-btn:last-child { border-right: none; }
+    .action-btn:hover:not(:disabled) {
+      background: var(--bone);
+      color: var(--bg);
+    }
+    .action-btn.primary { background: var(--green); color: var(--bone); }
+    .action-btn.primary:hover {
+      background: var(--yellow);
+      color: var(--bg);
+    }
+    .action-btn.primary.done {
+      background: transparent;
+      color: var(--green-soft);
+      border-right: 1px solid var(--green);
+      box-shadow: inset 0 0 0 1px var(--green);
+    }
+    .action-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
     }
 
-    .link-btn .content {
+    /* DESCRIPTION PANEL */
+    .description-panel {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 56px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+    }
+
+    .description-panel .panel-side {
+      position: relative;
+    }
+
+    .description-panel .panel-side .num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 5rem;
+      line-height: 0.85;
+      color: var(--yellow);
+      margin-bottom: 12px;
+    }
+
+    .description-panel .panel-side .label {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .description-panel .panel-side h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .description-panel .panel-side h3 em { font-style: italic; }
+
+    .description-panel .panel-body {
+      transition: opacity 0.35s ease;
+    }
+
+    .description-panel .panel-body p {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--bone-dim);
+      font-weight: 300;
+      margin-bottom: 18px;
+    }
+    .description-panel .panel-body p:last-child { margin-bottom: 0; }
+    .description-panel .panel-body p strong {
+      color: var(--bone);
+      font-weight: 500;
+    }
+    .description-panel .panel-body p em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--yellow);
+      font-size: 1.1em;
+      letter-spacing: -0.01em;
+    }
+
+    .description-panel .topics {
+      margin-top: 28px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .description-panel .topic {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .description-panel .topic:first-child { border-top: 1px solid var(--line-strong); }
+
+    .description-panel .topic .t-num {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    .description-panel .topic .t-text {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: var(--bone);
+    }
+    .description-panel .topic .t-text em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--bone-dim);
+    }
+
+    /* PROMPT BLOCKS */
+    .prompt-block {
+      margin-top: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line-strong);
+      position: relative;
+    }
+    .prompt-block + .prompt-block { margin-top: 18px; }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .prompt-head .prompt-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-head .prompt-label::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .prompt-head .prompt-sub {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--bone-dim);
       flex: 1;
       min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .link-btn .content .title {
-      font-size: 1rem;
-      font-weight: 800;
-      margin-bottom: 2px;
-    }
-
-    .link-btn .content .url {
-      font-size: .78rem;
-      opacity: .8;
+    .prompt-copy {
+      background: transparent;
+      border: 1px solid var(--bone);
+      color: var(--bone);
+      padding: 7px 14px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       font-weight: 500;
-      word-break: break-all;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .prompt-copy:hover {
+      background: var(--bone);
+      color: var(--bg);
+    }
+    .prompt-copy.copied {
+      background: var(--yellow);
+      color: var(--bg);
+      border-color: var(--yellow);
     }
 
-    .link-btn .arrow { font-size: 1.3rem; opacity: .7; }
+    .prompt-body {
+      padding: 18px 20px;
+      max-height: 320px;
+      overflow-y: auto;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--bone-dim);
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+      letter-spacing: 0.005em;
+    }
+    .prompt-body::-webkit-scrollbar { width: 5px; }
+    .prompt-body::-webkit-scrollbar-track { background: transparent; }
+    .prompt-body::-webkit-scrollbar-thumb {
+      background: var(--line-strong);
+      border-radius: 99px;
+    }
 
-    /* INFO CALLOUT */
-    .callout {
-      background: rgba(217, 255, 2, .08);
-      border-left: 4px solid #D9FF02;
-      border-radius: 8px;
-      padding: 16px 18px;
-      margin-top: 20px;
-      font-size: .92rem;
+    .prompt-foot {
+      padding: 10px 18px;
+      border-top: 1px solid var(--line);
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* SECTION */
+    .section { margin-top: 96px; }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 36px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .section-head-left {
+      display: flex;
+      align-items: flex-end;
+      gap: 28px;
+    }
+    .section-head .num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 4.5rem;
+      line-height: 0.85;
+      color: var(--yellow);
+    }
+    .section-head h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+    .section-head h2 em { font-style: italic; }
+    .section-head .sub {
+      font-size: 0.95rem;
+      color: var(--bone-dim);
+      max-width: 380px;
       line-height: 1.5;
-      color: #e5e5e5;
     }
 
-    .callout strong { color: #D9FF02; }
-
-    .footer {
-      text-align: center;
-      color: #666;
-      font-size: .8rem;
-      margin-top: 40px;
+    /* COUPONS / TICKETS */
+    .coupons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 22px;
     }
 
-    @media (max-width: 540px) {
-      .card { padding: 22px 18px; }
-      .link-btn { padding: 14px 16px; gap: 12px; }
-      .link-btn .icon { width: 38px; height: 38px; }
-      .coupon { padding: 16px 14px; }
+    .ticket {
+      position: relative;
+      background: var(--panel);
+      padding: 26px 30px;
+      border: 1px solid var(--line-strong);
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
+      overflow: visible;
+    }
+    .ticket:hover {
+      transform: translateY(-4px);
+      border-color: var(--yellow);
+    }
+    .ticket::before, .ticket::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--bg);
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: border-color 0.3s;
+    }
+    .ticket::before { left: -10px; }
+    .ticket::after { right: -10px; }
+    .ticket:hover::before, .ticket:hover::after { border-color: var(--yellow); }
+
+    .ticket-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      gap: 12px;
+    }
+    .ticket-plan {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+    .ticket-plan em { font-style: italic; }
+    .ticket-discount {
+      font-family: 'Geist Mono', monospace;
+      font-size: 1rem;
+      color: var(--yellow);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .ticket-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--line-strong);
+    }
+    .ticket-code {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+    }
+    .ticket-code .code {
+      font-family: 'Geist Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--bone);
+      letter-spacing: 0.06em;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--bone);
+      color: var(--bone);
+      padding: 9px 14px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    .copy-btn:hover {
+      background: var(--bone);
+      color: var(--bg);
+    }
+    .copy-btn.copied {
+      background: var(--yellow);
+      color: var(--bg);
+      border-color: var(--yellow);
+    }
+
+    /* LINKS */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line-strong);
+    }
+    .link-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 36px 38px;
+      transition: background 0.4s;
+      border-right: 1px solid var(--line-strong);
+      position: relative;
+      overflow: hidden;
+    }
+    .link-card:last-child { border-right: none; }
+
+    .link-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--green);
+      transform: translateX(-101%);
+      transition: transform 0.55s cubic-bezier(0.7, 0, 0.3, 1);
+      z-index: 0;
+    }
+    .link-card:hover::after { transform: translateX(0); }
+    .link-card > * { position: relative; z-index: 1; }
+
+    .link-card .num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 2.2rem;
+      color: var(--muted);
+      transition: color 0.3s;
+      line-height: 1;
+    }
+    .link-card:hover .num { color: var(--bone); }
+
+    .link-card .info .name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.7rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      line-height: 1.1;
+    }
+    .link-card .info .name em { font-style: italic; }
+
+    .link-card .info .url {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+      transition: color 0.3s;
+    }
+    .link-card:hover .info .url { color: rgba(255, 255, 255, 0.9); }
+
+    .link-card .arrow {
+      font-family: 'Instrument Serif', serif;
+      font-size: 2.6rem;
+      font-style: italic;
+      color: var(--yellow);
+      transition: transform 0.3s, color 0.3s;
+      line-height: 1;
+    }
+    .link-card:hover .arrow {
+      color: var(--bone);
+      transform: translateX(8px);
+    }
+
+    /* COLOPHON */
+    .colophon {
+      margin-top: 110px;
+      padding: 36px 0 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .colophon strong {
+      font-weight: 500;
+      color: var(--bone-dim);
+    }
+    .colophon .gline {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--bone-dim);
+    }
+
+    /* OVERLAY */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 40;
+    }
+    .sidebar-overlay.open { display: block; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .editorial-meta { animation: fadeUp 0.55s ease-out 0.05s both; }
+    .lesson-hero { animation: fadeUp 0.65s ease-out 0.18s both; }
+    .video-section { animation: fadeUp 0.7s ease-out 0.32s both; }
+    .lesson-actions { animation: fadeUp 0.6s ease-out 0.45s both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1180px) {
+      .layout { grid-template-columns: 320px 1fr; }
+      .main { padding: 56px 48px 100px; }
+    }
+
+    @media (max-width: 960px) {
+      .menu-toggle { display: flex; }
+      .topbar-center { display: none; }
+      .topbar { grid-template-columns: 1fr auto; padding: 14px 20px; }
+      .layout { grid-template-columns: 1fr; }
+      .sidebar {
+        position: fixed;
+        left: 0; top: 64px;
+        width: 340px;
+        max-width: 90vw;
+        height: calc(100vh - 64px);
+        z-index: 45;
+        transform: translateX(-100%);
+        transition: transform 0.45s cubic-bezier(0.7, 0, 0.3, 1);
+        background: var(--bg);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .main { padding: 44px 28px 80px; }
+      .link-grid { grid-template-columns: 1fr; }
+      .link-card {
+        border-right: none;
+        border-bottom: 1px solid var(--line-strong);
+        padding: 28px 24px;
+      }
+      .link-card:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 960px) {
+      .description-panel { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 600px) {
+      .main { padding: 32px 18px 60px; }
+      .editorial-meta { gap: 10px; }
+      .editorial-meta .divider { display: none; }
+      .lesson-actions { flex-direction: column; }
+      .action-btn {
+        border-right: none;
+        border-bottom: 1px solid var(--line-strong);
+      }
+      .action-btn:last-child { border-bottom: none; }
+      .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .section-head-left { gap: 18px; }
+      .video-frame { padding: 12px; }
+      .video-frame .corner { width: 18px; height: 18px; }
+      .colophon { font-size: 0.62rem; }
+      .description-panel .panel-side .num { font-size: 3.5rem; }
+      .description-panel .panel-side h3 { font-size: 1.5rem; }
+      .description-panel .panel-body p { font-size: 1rem; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <div class="container">
 
-      <!-- HEADER -->
-      <div class="header-wrap">
-        <span class="tag">🎥 Tutorial Exclusivo</span>
-        <h1>Cómo Obtener <span class="highlight">Tus Prompts</span></h1>
-        <p class="subtitle">
-          Mira este video paso a paso y descubre cómo acceder a los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo.
-        </p>
+  <div class="ambient a1"></div>
+  <div class="ambient a2"></div>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">G</div>
+      <div class="brand-name">gustagoat<em>.ia</em></div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="progress-display">
+        <span class="count"><strong id="progress-count">00</strong> &nbsp;/&nbsp; <span id="total-count">02</span></span>
+        <div class="film" id="film"></div>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <span class="date-stamp">Vol. I &middot; MMXXVI</span>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">≡</button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-head">
+          <span class="label">Capítulo</span>
+          <span class="roman">i</span>
+          <span class="count" id="lesson-count">02 aulas</span>
+        </div>
+
+        <div class="lesson active"
+             data-idx="0"
+             data-lesson="1"
+             data-player="69e9389488365845bd02f872"
+             data-title-html='Cómo <em>obtener</em> tus <span class="marker">prompts</span>'
+             data-desc="Mira este video paso a paso y descubre cómo acceder a los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo."
+             data-duration="8 MIN"
+             data-status="aula">
+          <div class="lesson-num">01</div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <span class="dot"></span>
+              <span>Aula &middot; Tutorial</span>
+            </div>
+            <div class="lesson-title">Cómo <em>obtener</em> tus prompts</div>
+          </div>
+        </div>
+
+        <div class="lesson"
+             data-idx="1"
+             data-lesson="2"
+             data-player="69ee9662e1dcfbd062a7b144"
+             data-title-html='Guía de <em>consistencia</em> facial'
+             data-desc="Aprende a mantener el MISMO rostro de tu influencer en el 100% de las imágenes. El secreto que separa el resultado amateur del profesional. Paso a paso con capturas de pantalla."
+             data-duration="GUÍA"
+             data-status="aula">
+          <div class="lesson-num">02</div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <span class="dot"></span>
+              <span>Aula &middot; Guía</span>
+            </div>
+            <div class="lesson-title">Guía de <em>consistencia</em> facial</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-head">
+          <span class="label">Recursos</span>
+          <span class="roman">ii</span>
+          <span class="count">02</span>
+        </div>
+
+        <a href="https://www.geraew.com.br/" target="_blank" rel="noopener" class="quick-link">
+          <span class="arrow-mark">→</span>
+          <span class="qname"><em>GERAEW</em></span>
+          <span class="qhost">.br</span>
+        </a>
+
+        <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="quick-link">
+          <span class="arrow-mark">→</span>
+          <span class="qname">+300 <em>prompts</em></span>
+          <span class="qhost">notion</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <div class="editorial-meta">
+        <span class="label accent" id="meta-num">Aula 01</span>
+        <span class="divider"></span>
+        <span class="label" id="meta-duration">8 MIN</span>
+        <span class="divider"></span>
+        <span class="label">Curso · 300 Prompts</span>
+        <span class="divider"></span>
+        <span class="label">Idioma · ES</span>
+      </div>
+
+      <div class="lesson-hero">
+        <h1 id="lesson-title">Cómo <em>obtener</em> tus <span class="marker">prompts</span></h1>
+        <p id="lesson-desc">Mira este video paso a paso y descubre cómo acceder a los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo.</p>
       </div>
 
       <!-- VIDEO -->
-      <div class="video-wrap">
-        <vturb-smartplayer id="vid-69e9389488365845bd02f872" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      <div class="video-section">
+        <div class="video-frame">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <div class="video-inner" id="player-container">
+            <vturb-smartplayer id="vid-69e9389488365845bd02f872" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+          </div>
+        </div>
+        <div class="video-strip">
+          <span class="rec-dot">En reproducción</span>
+          <span>VTURB · Tutorial</span>
+          <span>HD · 1080p</span>
+        </div>
       </div>
 
-      <!-- COUPONS SECTION -->
-      <div class="card">
-        <h2 class="section-title">🎟️ <span class="highlight">Cupones de Descuento</span></h2>
-        <p style="text-align:center; color:#b3b3b3; margin-bottom:22px; font-size:.95rem;">
-          Usa el cupón correspondiente a tu plan al momento de suscribirte:
-        </p>
+      <div class="lesson-actions">
+        <button class="action-btn" id="prevBtn">← Anterior</button>
+        <button class="action-btn primary" id="markComplete">
+          <span id="mc-icon">○</span>
+          <span id="mc-text">Marcar completada</span>
+        </button>
+        <button class="action-btn" id="nextBtn">Siguiente →</button>
+      </div>
 
-        <div class="coupons-grid">
-          <div class="coupon">
-            <div class="plan">⚡ Starter</div>
-            <div class="discount"><strong>10% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT10</span>
+      <!-- DESCRIPTION PANEL -->
+      <div class="description-panel">
+        <div class="panel-side">
+          <div class="num">¶</div>
+          <div class="label">Sobre esta aula</div>
+          <h3>Descripción <em>&amp;</em> recursos</h3>
+        </div>
+        <div class="panel-body" id="panel-body">
+          <!-- conteúdo injetado por JS -->
+        </div>
+      </div>
+
+      <!-- TEMPLATES de descripción -->
+      <template id="desc-1">
+        <p>En este video te mostramos, <strong>paso a paso</strong>, cómo <em>acceder</em> a los +300 prompts en Notion, ingresar a la plataforma <strong>GERAEW</strong> y aplicar tus cupones de descuento según el plan que elijas.</p>
+        <p>Sigue las instrucciones del video y en menos de 5 minutos estarás listo para crear tu primera influencer de IA.</p>
+      </template>
+
+      <template id="desc-2">
+        <p>Aprende a mantener el <strong>MISMO rostro</strong> de tu influencer en el <em>100%</em> de las imágenes. Este es el secreto que separa el resultado <strong>amateur</strong> del <strong>profesional</strong>.</p>
+        <p>Abajo encontrarás los <strong>dos prompts</strong> usados en el video. Cópialos directamente y úsalos como base para tus generaciones.</p>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">Prompt 01</span>
+            <span class="prompt-sub">Hoja de variaciones · 9 poses</span>
+            <button class="prompt-copy" data-target="prompt-1-body">Copiar</button>
+          </div>
+          <pre class="prompt-body" id="prompt-1-body">{ "subject": { "identity_reference": "uploaded face and body reference", "identity_accuracy": "100% same facial structure, hair, skin tone, body shape, outfit, accessories; do not alter identity", "pose_variations": [ { "name": "front-facing medium shot", "description": "upper to mid-body, facing camera directly, elegant and confident posture" }, { "name": "front-facing extreme close-up", "description": "focus on face and eyes, capturing expression and makeup details" }, { "name": "low-angle full-body shot", "description": "camera slightly below, looking upward, powerful stance emphasizing outfit and height" }, { "name": "high-angle shot", "description": "slightly above, looking down, soft editorial perspective" }, { "name": "side profile portrait", "description": "exact profile of face and hair, elegant posture, studio lighting highlights contours" }, { "name": "34 profile (three-quarter turn)", "description": "torso and face turned three-quarters, emphasizing silhouette and outfit details" }, { "name": "over-the-shoulder view", "description": "subject looks slightly away from camera, shoulder closest to camera in foreground" }, { "name": "Dutch tilt", "description": "slightly rotated camera angle for dynamic editorial feel, maintaining consistent pose" }, { "name": "mid-walk candid", "description": "natural motion captured, subtle step forward, relaxed arms, editorial energy" } ] }, "wardrobe": { "description": "maintain exact outfit, fabric, and accessories as in identity reference", "consistency": "all panels must match perfectly" }, "environment": { "setting": "studio environment", "background": "clean, minimal, neutral or light-grey cyclorama", "lighting": "soft professional studio lighting, subtle fill, flattering highlights" }, "camera": { "shot_type": "varies per panel as specified", "angle": "specified per panel (low, high, front, profile, Dutch tilt, mid-motion)", "depth_of_field": "shallow, subject in sharp focus, blurred background" }, "composition": { "grid": "3x3 contact sheet", "spacing": "consistent, balanced layout", "framing": "each panel fully showcases pose and outfit while keeping identity clear" }, "aesthetic": { "style": "editorial fashion photography", "mood": "cinematic, professional, high-end", "color_palette": "maintain wardrobe and skin tones as reference, neutral background" }, "render_quality": { "realism": "ultra-photorealistic", "resolution": "high (8K recommended)", "detail_focus": "fabric texture, skin, hair, accessories, lighting consistency across panels" }, "negative_prompts": [ "identity change", "distorted anatomy", "extra limbs", "blurred face", "motion artifacts", "low resolution", "inconsistent outfit or hair", "harsh shadows", "plastic skin", "busy background" ] }</pre>
+          <div class="prompt-foot">
+            <span>JSON · Variation Sheet</span>
+            <span>Pega en GERAEW</span>
+          </div>
+        </div>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">Prompt 02</span>
+            <span class="prompt-sub">Hoja de referencia del personaje</span>
+            <button class="prompt-copy" data-target="prompt-2-body">Copiar</button>
+          </div>
+          <pre class="prompt-body" id="prompt-2-body">Create a professional character reference sheet based strictly on the uploaded reference image. Use a clean, neutral plain background and present the sheet as a technical model turnaround while matching the exact visual style of the reference (same realism level, rendering approach, texture, color treatment, and overall aesthetic). Arrange the composition into two horizontal rows. Top row: four full-body standing views placed side-by-side in this order: front view, left profile view (facing left), right profile view (facing right), back view. Bottom row: three highly detailed close-up portraits aligned beneath the full-body row in this order: front portrait, left profile portrait (facing left), right profile portrait (facing right). Maintain perfect identity consistency across every panel. Keep the subject in a relaxed A-pose and with consistent scale and alignment between views, accurate anatomy, and clear silhouette; ensure even spacing and clean panel separation, with uniform framing and consistent head height across the full-body lineup and consistent facial scale across the portraits. Lighting should be consistent across all panels (same direction, intensity, and softness), with natural, controlled shadows that preserve detail without dramatic mood shifts. Output a crisp, print-ready reference sheet look, sharp details.</pre>
+          <div class="prompt-foot">
+            <span>Texto · Reference Sheet</span>
+            <span>Pega en GERAEW</span>
+          </div>
+        </div>
+      </template>
+
+      <!-- COUPONS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-left">
+            <div class="num">§</div>
+            <div>
+              <div class="label" style="margin-bottom:10px;color:var(--muted);">Sección 01</div>
+              <h2>Cupones de <em>descuento</em></h2>
+            </div>
+          </div>
+          <p class="sub">Aplica el código correspondiente a tu plan en el momento del pago. Vigentes hasta nuevo aviso.</p>
+        </div>
+
+        <div class="coupons">
+
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan">Starter</div>
+              <div class="ticket-discount">−10%</div>
+            </div>
+            <div class="ticket-meta">Plan inicial · ahorro mínimo</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT10</span>
               <button class="copy-btn" data-code="GUSTAGOAT10">Copiar</button>
             </div>
           </div>
 
-          <div class="coupon">
-            <div class="plan">🚀 Basic</div>
-            <div class="discount"><strong>10% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT10</span>
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan">Basic</div>
+              <div class="ticket-discount">−10%</div>
+            </div>
+            <div class="ticket-meta">Plan esencial</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT10</span>
               <button class="copy-btn" data-code="GUSTAGOAT10">Copiar</button>
             </div>
           </div>
 
-          <div class="coupon">
-            <div class="plan">🎨 Creator</div>
-            <div class="discount"><strong>15% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT15</span>
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan"><em>Creator</em></div>
+              <div class="ticket-discount">−15%</div>
+            </div>
+            <div class="ticket-meta">Para creadores activos</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT15</span>
               <button class="copy-btn" data-code="GUSTAGOAT15">Copiar</button>
             </div>
           </div>
 
-          <div class="coupon">
-            <div class="plan">💎 Pro</div>
-            <div class="discount"><strong>17% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT17</span>
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan"><em>Pro</em></div>
+              <div class="ticket-discount">−17%</div>
+            </div>
+            <div class="ticket-meta">Profesional · recomendado</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT17</span>
               <button class="copy-btn" data-code="GUSTAGOAT17">Copiar</button>
             </div>
           </div>
 
-          <div class="coupon">
-            <div class="plan">🔥 Advanced</div>
-            <div class="discount"><strong>25% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT25</span>
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan"><em>Advanced</em></div>
+              <div class="ticket-discount">−25%</div>
+            </div>
+            <div class="ticket-meta">Avanzado · más popular</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT25</span>
               <button class="copy-btn" data-code="GUSTAGOAT25">Copiar</button>
             </div>
           </div>
 
-          <div class="coupon">
-            <div class="plan">🏆 Studio</div>
-            <div class="discount"><strong>30% OFF</strong> de descuento</div>
-            <div class="code">
-              <span>GUSTAGOAT30</span>
+          <div class="ticket">
+            <div class="ticket-head">
+              <div class="ticket-plan"><em>Studio</em></div>
+              <div class="ticket-discount">−30%</div>
+            </div>
+            <div class="ticket-meta">Studio · máximo descuento</div>
+            <div class="ticket-code">
+              <span class="code">GUSTAGOAT30</span>
               <button class="copy-btn" data-code="GUSTAGOAT30">Copiar</button>
             </div>
           </div>
+
+        </div>
+      </section>
+
+      <!-- LINKS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-head-left">
+            <div class="num">¶</div>
+            <div>
+              <div class="label" style="margin-bottom:10px;color:var(--muted);">Sección 02</div>
+              <h2>Enlaces <em>importantes</em></h2>
+            </div>
+          </div>
+          <p class="sub">Tu llave de acceso a las herramientas y al banco de prompts.</p>
         </div>
 
-        <div class="callout">
-          <strong>💡 Consejo:</strong> Copia el cupón de tu plan y pégalo en el checkout para aplicar tu descuento automáticamente.
+        <div class="link-grid">
+          <a href="https://www.geraew.com.br/" target="_blank" rel="noopener" class="link-card">
+            <div class="num">i.</div>
+            <div class="info">
+              <div class="name">Acceder a <em>GERAEW</em></div>
+              <div class="url">www.geraew.com.br</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+
+          <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="link-card">
+            <div class="num">ii.</div>
+            <div class="info">
+              <div class="name">+300 Prompts <em>en Notion</em></div>
+              <div class="url">influencer a.i. — biblioteca</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
         </div>
-      </div>
+      </section>
 
-      <!-- LINKS SECTION -->
-      <div class="card">
-        <h2 class="section-title">🔗 <span class="highlight">Enlaces Importantes</span></h2>
+      <!-- COLOPHON -->
+      <footer class="colophon">
+        <span class="gline">— gustagoat.ia</span>
+        <span><strong>© MMXXVI</strong> · Todos los derechos reservados</span>
+        <span>Curso · vol. i · ed. español</span>
+      </footer>
 
-        <a href="https://www.geraew.com.br/" target="_blank" rel="noopener" class="link-btn">
-          <div class="icon">🎬</div>
-          <div class="content">
-            <div class="title">Acceder a GERAEW</div>
-            <div class="url">www.geraew.com.br</div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-
-        <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="link-btn alt">
-          <div class="icon">📘</div>
-          <div class="content">
-            <div class="title">+300 Prompts en Notion</div>
-            <div class="url">Influencer A.I. — 300 Prompts</div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
-      </div>
-
-      <p class="footer">© gustagoat.ia — Todos los derechos reservados</p>
-
-    </div>
+    </main>
   </div>
 
-  <!-- VTURB Player Script -->
+  <!-- VTURB -->
   <script type="text/javascript">
     var s = document.createElement("script");
     s.src = "https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/69e9389488365845bd02f872/v4/player.js";
@@ -404,23 +1402,219 @@
     document.head.appendChild(s);
   </script>
 
-  <!-- Copy coupon script -->
   <script>
+    // ===== MOBILE SIDEBAR =====
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+      });
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+      });
+    }
+
+    // ===== ELEMENTS =====
+    const lessons = document.querySelectorAll('.lesson');
+    const lessonTitle = document.getElementById('lesson-title');
+    const lessonDesc = document.getElementById('lesson-desc');
+    const metaNum = document.getElementById('meta-num');
+    const metaDuration = document.getElementById('meta-duration');
+    const playerContainer = document.getElementById('player-container');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const markBtn = document.getElementById('markComplete');
+    const mcIcon = document.getElementById('mc-icon');
+    const mcText = document.getElementById('mc-text');
+    const film = document.getElementById('film');
+    const progressCount = document.getElementById('progress-count');
+    const totalCount = document.getElementById('total-count');
+    const panelBody = document.getElementById('panel-body');
+
+    let currentIdx = 0;
+    const total = lessons.length;
+    totalCount.textContent = String(total).padStart(2, '0');
+
+    // Build film strip
+    for (let i = 0; i < total; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'film-cell';
+      cell.dataset.idx = i;
+      film.appendChild(cell);
+    }
+
+    const STORAGE_KEY = 'gustagoat_completed_v3';
+    let completed = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const pad = n => String(n).padStart(2, '0');
+
+    function loadLesson(idx) {
+      const lesson = lessons[idx];
+      if (!lesson) return;
+
+      lessons.forEach(l => l.classList.remove('active'));
+      lesson.classList.add('active');
+
+      const playerId = lesson.dataset.player;
+      const titleHtml = lesson.dataset.titleHtml;
+      const desc = lesson.dataset.desc;
+      const duration = lesson.dataset.duration;
+
+      // Smooth swap
+      lessonTitle.style.opacity = '0';
+      lessonDesc.style.opacity = '0';
+      panelBody.style.opacity = '0';
+
+      setTimeout(() => {
+        lessonTitle.innerHTML = titleHtml;
+        lessonDesc.textContent = desc;
+        metaNum.textContent = `Aula ${pad(idx + 1)}`;
+        metaDuration.textContent = duration;
+        lessonTitle.style.opacity = '1';
+        lessonDesc.style.opacity = '1';
+
+        // Load description template
+        const tpl = document.getElementById(`desc-${lesson.dataset.lesson}`);
+        panelBody.innerHTML = '';
+        if (tpl && tpl.content) {
+          panelBody.appendChild(tpl.content.cloneNode(true));
+          bindPromptCopy();
+        }
+        panelBody.style.opacity = '1';
+      }, 220);
+
+      // Player swap
+      if (playerId) {
+        playerContainer.innerHTML = `<vturb-smartplayer id="vid-${playerId}" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>`;
+        const sc = document.createElement('script');
+        sc.src = `https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/${playerId}/v4/player.js`;
+        sc.async = true;
+        document.head.appendChild(sc);
+      } else {
+        playerContainer.innerHTML = `
+          <div style="aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0a0a0a;color:var(--bone-dim);text-align:center;padding:32px;gap:14px;">
+            <div style="font-family:'Instrument Serif',serif;font-size:3.5rem;font-style:italic;color:var(--yellow);line-height:1;">soon.</div>
+            <div style="font-family:'Geist Mono',monospace;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);">Próximamente disponible</div>
+          </div>`;
+      }
+
+      currentIdx = idx;
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = idx === total - 1;
+      updateMarkButton();
+      updateFilmCurrent();
+
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateFilmCurrent() {
+      film.querySelectorAll('.film-cell').forEach((cell, i) => {
+        cell.classList.toggle('current', i === currentIdx);
+      });
+    }
+
+    function applyCompletedState() {
+      lessons.forEach((l) => {
+        const id = l.dataset.lesson;
+        if (completed.includes(id)) l.classList.add('completed');
+        else l.classList.remove('completed');
+      });
+      film.querySelectorAll('.film-cell').forEach((cell, i) => {
+        const id = lessons[i]?.dataset.lesson;
+        if (completed.includes(id)) cell.classList.add('done');
+        else cell.classList.remove('done');
+      });
+      progressCount.textContent = pad(completed.length);
+    }
+
+    function updateMarkButton() {
+      const id = lessons[currentIdx].dataset.lesson;
+      if (completed.includes(id)) {
+        markBtn.classList.add('done');
+        mcIcon.textContent = '●';
+        mcText.textContent = 'Completada';
+      } else {
+        markBtn.classList.remove('done');
+        mcIcon.textContent = '○';
+        mcText.textContent = 'Marcar completada';
+      }
+    }
+
+    lessons.forEach((l, i) => l.addEventListener('click', () => loadLesson(i)));
+    prevBtn.addEventListener('click', () => loadLesson(currentIdx - 1));
+    nextBtn.addEventListener('click', () => loadLesson(currentIdx + 1));
+    markBtn.addEventListener('click', () => {
+      const id = lessons[currentIdx].dataset.lesson;
+      if (completed.includes(id)) completed = completed.filter(x => x !== id);
+      else completed.push(id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
+      applyCompletedState();
+      updateMarkButton();
+    });
+
+    lessonTitle.style.transition = 'opacity 0.35s ease';
+    lessonDesc.style.transition = 'opacity 0.35s ease';
+    panelBody.style.transition = 'opacity 0.35s ease';
+
+    // Bind copy on prompt blocks
+    function bindPromptCopy() {
+      panelBody.querySelectorAll('.prompt-copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+          const el = document.getElementById(target);
+          if (!el) return;
+          navigator.clipboard.writeText(el.textContent).then(() => {
+            const original = btn.textContent;
+            btn.textContent = '✓ Copiado';
+            btn.classList.add('copied');
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 2200);
+          });
+        });
+      });
+    }
+
+    // Initial description load
+    function loadInitialDesc() {
+      const initial = lessons[currentIdx];
+      const tpl = document.getElementById(`desc-${initial.dataset.lesson}`);
+      if (tpl && tpl.content) {
+        panelBody.appendChild(tpl.content.cloneNode(true));
+        bindPromptCopy();
+      }
+    }
+    loadInitialDesc();
+
+    applyCompletedState();
+    updateFilmCurrent();
+    prevBtn.disabled = true;
+    nextBtn.disabled = total === 1;
+    updateMarkButton();
+
+    // ===== COUPONS =====
     document.querySelectorAll('.copy-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const code = btn.getAttribute('data-code');
         navigator.clipboard.writeText(code).then(() => {
           const original = btn.textContent;
-          btn.textContent = '¡Copiado!';
+          btn.textContent = '✓ Copiado';
           btn.classList.add('copied');
           setTimeout(() => {
             btn.textContent = original;
             btn.classList.remove('copied');
-          }, 1800);
+          }, 2000);
         });
       });
     });
   </script>
+
 </body>
 
 </html>
