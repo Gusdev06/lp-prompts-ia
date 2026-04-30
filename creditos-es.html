@@ -1000,6 +1000,158 @@
     }
     .sidebar-overlay.open { display: block; }
 
+    /* LINKS STAGE (aula type=links) */
+    .links-stage {
+      padding: 56px 32px;
+      background: linear-gradient(180deg, #0a0a0a, #050505);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      min-height: 380px;
+      justify-content: center;
+    }
+    .links-stage-head {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .links-stage-head .ico {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 3.5rem;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .links-stage-head .t {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.6rem;
+      color: var(--bone);
+      letter-spacing: -0.01em;
+    }
+    .links-stage-head .s {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .links-stage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .links-stage-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 24px 28px;
+      border: 1px solid var(--line-strong);
+      background: rgba(244, 241, 234, 0.02);
+      transition: background 0.4s, border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .links-stage-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--green);
+      transform: translateX(-101%);
+      transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
+      z-index: 0;
+    }
+    .links-stage-card:hover { border-color: var(--yellow); transform: translateY(-2px); }
+    .links-stage-card:hover::after { transform: translateX(0); }
+    .links-stage-card > * { position: relative; z-index: 1; }
+    .links-stage-card .num {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 1.7rem;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .links-stage-card:hover .num { color: var(--bone); }
+    .links-stage-card .info .name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+      color: var(--bone);
+    }
+    .links-stage-card .info .name em { font-style: italic; color: var(--bone-dim); }
+    .links-stage-card:hover .info .name em { color: rgba(255,255,255,0.85); }
+    .links-stage-card .info .url {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone-dim);
+    }
+    .links-stage-card .arrow {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--yellow);
+      transition: transform 0.3s, color 0.3s;
+    }
+    .links-stage-card:hover .arrow { color: var(--bone); transform: translateX(6px); }
+
+    @media (max-width: 720px) {
+      .links-stage { padding: 40px 18px; }
+      .links-stage-grid { grid-template-columns: 1fr; }
+    }
+
+    /* PDF VIEWER */
+    .pdf-viewer {
+      aspect-ratio: 16 / 11;
+      width: 100%;
+      background: #1a1a1a;
+      border: 0;
+      display: block;
+    }
+    .pdf-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 60px 32px;
+      background: #0a0a0a;
+      color: var(--bone-dim);
+      text-align: center;
+    }
+    .pdf-fallback .ico {
+      font-family: 'Instrument Serif', serif;
+      font-size: 4rem;
+      font-style: italic;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .pdf-fallback a {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 14px 26px;
+      background: var(--yellow);
+      color: var(--bg);
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .pdf-fallback a:hover { background: var(--bone); }
+
+    @media (max-width: 720px) {
+      .pdf-viewer { aspect-ratio: 3 / 4; }
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -1083,7 +1235,7 @@
 
     <div class="topbar-center">
       <div class="progress-display">
-        <span class="count"><strong id="progress-count">00</strong> &nbsp;/&nbsp; <span id="total-count">02</span></span>
+        <span class="count"><strong id="progress-count">00</strong> &nbsp;/&nbsp; <span id="total-count">05</span></span>
         <div class="film" id="film"></div>
       </div>
     </div>
@@ -1105,42 +1257,97 @@
         <div class="sidebar-section-head">
           <span class="label">Capítulo</span>
           <span class="roman">i</span>
-          <span class="count" id="lesson-count">02 aulas</span>
+          <span class="count" id="lesson-count">05 aulas</span>
         </div>
 
         <div class="lesson active"
              data-idx="0"
              data-lesson="1"
-             data-player="69e9389488365845bd02f872"
-             data-title-html='Cómo <em>obtener</em> tus <span class="marker">prompts</span>'
-             data-desc="Mira este video paso a paso y descubre cómo acceder a los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo."
-             data-duration="8 MIN"
+             data-type="links"
+             data-title-html='Obtén tus <span class="marker">prompts</span>'
+             data-desc="Accede a la plataforma GERAEW y al Notion con la biblioteca completa de los +300 prompts. Tu primer paso para empezar a crear."
+             data-duration="ENLACES"
              data-status="aula">
           <div class="lesson-num">01</div>
           <div class="lesson-body">
             <div class="lesson-meta">
               <span class="dot"></span>
-              <span>Aula &middot; Tutorial</span>
+              <span>Aula &middot; Enlaces</span>
             </div>
-            <div class="lesson-title">Cómo <em>obtener</em> tus prompts</div>
+            <div class="lesson-title">Obtén tus <em>prompts</em></div>
           </div>
         </div>
 
         <div class="lesson"
              data-idx="1"
              data-lesson="2"
+             data-player="69e9389488365845bd02f872"
+             data-title-html='Cómo <em>usar</em> los prompts <em>+ Bonus</em>'
+             data-desc="Mira este video paso a paso y descubre cómo usar los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo. Incluye bonus exclusivos."
+             data-duration="8 MIN"
+             data-status="aula">
+          <div class="lesson-num">02</div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <span class="dot"></span>
+              <span>Aula &middot; Tutorial + Bonus</span>
+            </div>
+            <div class="lesson-title">Cómo <em>usar</em> los prompts + Bonus</div>
+          </div>
+        </div>
+
+        <div class="lesson"
+             data-idx="2"
+             data-lesson="3"
              data-player="69ee9662e1dcfbd062a7b144"
              data-title-html='Guía de <em>consistencia</em> facial'
              data-desc="Aprende a mantener el MISMO rostro de tu influencer en el 100% de las imágenes. El secreto que separa el resultado amateur del profesional. Paso a paso con capturas de pantalla."
              data-duration="GUÍA"
              data-status="aula">
-          <div class="lesson-num">02</div>
+          <div class="lesson-num">03</div>
           <div class="lesson-body">
             <div class="lesson-meta">
               <span class="dot"></span>
               <span>Aula &middot; Guía</span>
             </div>
             <div class="lesson-title">Guía de <em>consistencia</em> facial</div>
+          </div>
+        </div>
+
+        <div class="lesson"
+             data-idx="3"
+             data-lesson="4"
+             data-type="pdf"
+             data-pdf-url="GeraEW_Guia_Monetizacion_ES.pdf"
+             data-title-html='Guía de <em>monetización</em>'
+             data-desc="Descubre cómo monetizar tu influencer de IA: estrategias completas para generar ingresos con tu personaje virtual."
+             data-duration="PDF"
+             data-status="aula">
+          <div class="lesson-num">04</div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <span class="dot"></span>
+              <span>Aula &middot; PDF</span>
+            </div>
+            <div class="lesson-title">Guía de <em>monetización</em></div>
+          </div>
+        </div>
+
+        <div class="lesson"
+             data-idx="4"
+             data-lesson="5"
+             data-player="69f3a8959d331150eaf5a799"
+             data-title-html='+18 <em>IA sin censura</em> +18'
+             data-desc="Acceso al bot de Telegram con contenido +18 sin censura. Únete al canal exclusivo para crear sin límites."
+             data-duration="+18"
+             data-status="aula">
+          <div class="lesson-num">05</div>
+          <div class="lesson-body">
+            <div class="lesson-meta">
+              <span class="dot"></span>
+              <span>Aula &middot; +18</span>
+            </div>
+            <div class="lesson-title">+18 <em>IA sin censura</em></div>
           </div>
         </div>
       </div>
@@ -1172,7 +1379,7 @@
       <div class="editorial-meta">
         <span class="label accent" id="meta-num">Aula 01</span>
         <span class="divider"></span>
-        <span class="label" id="meta-duration">8 MIN</span>
+        <span class="label" id="meta-duration">ENLACES</span>
         <span class="divider"></span>
         <span class="label">Curso · 300 Prompts</span>
         <span class="divider"></span>
@@ -1180,8 +1387,8 @@
       </div>
 
       <div class="lesson-hero">
-        <h1 id="lesson-title">Cómo <em>obtener</em> tus <span class="marker">prompts</span></h1>
-        <p id="lesson-desc">Mira este video paso a paso y descubre cómo acceder a los +300 Prompts para empezar a crear tus propias influencers de IA hoy mismo.</p>
+        <h1 id="lesson-title">Obtén tus <span class="marker">prompts</span></h1>
+        <p id="lesson-desc">Accede a la plataforma GERAEW y al Notion con la biblioteca completa de los +300 prompts. Tu primer paso para empezar a crear.</p>
       </div>
 
       <!-- VIDEO -->
@@ -1192,13 +1399,37 @@
           <span class="corner bl"></span>
           <span class="corner br"></span>
           <div class="video-inner" id="player-container">
-            <vturb-smartplayer id="vid-69e9389488365845bd02f872" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+            <div class="links-stage">
+              <div class="links-stage-head">
+                <div class="ico">→</div>
+                <div class="t">Tus enlaces oficiales</div>
+                <div class="s">Haz clic para abrir en una pestaña nueva</div>
+              </div>
+              <div class="links-stage-grid">
+                <a href="https://www.geraew.com.br/prompts" target="_blank" rel="noopener" class="links-stage-card">
+                  <div class="num">i.</div>
+                  <div class="info">
+                    <div class="name">GERAEW <em>· Prompts</em></div>
+                    <div class="url">geraew.com.br/prompts</div>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+                <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="links-stage-card">
+                  <div class="num">ii.</div>
+                  <div class="info">
+                    <div class="name">+300 Prompts <em>· Notion</em></div>
+                    <div class="url">notion · biblioteca completa</div>
+                  </div>
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         <div class="video-strip">
-          <span class="rec-dot">En reproducción</span>
-          <span>VTURB · Tutorial</span>
-          <span>HD · 1080p</span>
+          <span class="rec-dot">Enlaces oficiales</span>
+          <span>GERAEW · Notion</span>
+          <span>+300 prompts</span>
         </div>
       </div>
 
@@ -1225,11 +1456,16 @@
 
       <!-- TEMPLATES de descripción -->
       <template id="desc-1">
-        <p>En este video te mostramos, <strong>paso a paso</strong>, cómo <em>acceder</em> a los +300 prompts en Notion, ingresar a la plataforma <strong>GERAEW</strong> y aplicar tus cupones de descuento según el plan que elijas.</p>
-        <p>Sigue las instrucciones del video y en menos de 5 minutos estarás listo para crear tu primera influencer de IA.</p>
+        <p>Aquí tienes los <strong>dos enlaces oficiales</strong> que necesitas para empezar: la plataforma <em>GERAEW</em> donde generarás tus influencers, y el <em>Notion</em> con los +300 prompts listos para copiar y pegar.</p>
+        <p>Haz clic en cada enlace de arriba para abrirlo en una nueva pestaña. Guárdalos en tus favoritos — los usarás siempre.</p>
       </template>
 
       <template id="desc-2">
+        <p>En este video te mostramos, <strong>paso a paso</strong>, cómo <em>usar</em> los +300 prompts en Notion, ingresar a la plataforma <strong>GERAEW</strong> y aplicar tus cupones de descuento según el plan que elijas. Incluye <em>bonus exclusivos</em>.</p>
+        <p>Sigue las instrucciones del video y en menos de 5 minutos estarás listo para crear tu primera influencer de IA.</p>
+      </template>
+
+      <template id="desc-3">
         <p>Aprende a mantener el <strong>MISMO rostro</strong> de tu influencer en el <em>100%</em> de las imágenes. Este es el secreto que separa el resultado <strong>amateur</strong> del <strong>profesional</strong>.</p>
         <p>Abajo encontrarás los <strong>dos prompts</strong> usados en el video. Cópialos directamente y úsalos como base para tus generaciones.</p>
 
@@ -1256,6 +1492,29 @@
           <div class="prompt-foot">
             <span>Texto · Reference Sheet</span>
             <span>Pega en GERAEW</span>
+          </div>
+        </div>
+      </template>
+
+      <template id="desc-4">
+        <p>En esta guía descubrirás cómo <strong>monetizar</strong> tu influencer de IA. Estrategias completas, paso a paso, para transformar tu personaje virtual en una <em>fuente real de ingresos</em>.</p>
+        <p>Lee el PDF completo arriba o descárgalo para consultar cuando quieras.</p>
+      </template>
+
+      <template id="desc-5">
+        <p>Accede al bot de <strong>Telegram</strong> con contenido <em>+18 sin censura</em>. Crea sin límites, sin filtros, sin restricciones.</p>
+        <p>Haz click en el enlace de abajo para entrar al bot exclusivo:</p>
+
+        <div class="prompt-block">
+          <div class="prompt-head">
+            <span class="prompt-label">Bot Telegram</span>
+            <span class="prompt-sub">Acceso directo · +18</span>
+            <a class="prompt-copy" href="https://t.me/ggnichohot_bot" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;">Abrir ↗</a>
+          </div>
+          <pre class="prompt-body" style="max-height:none;">https://t.me/ggnichohot_bot</pre>
+          <div class="prompt-foot">
+            <span>Telegram · @ggnichohot_bot</span>
+            <span>+18 · Sin censura</span>
           </div>
         </div>
       </template>
@@ -1394,13 +1653,8 @@
     </main>
   </div>
 
-  <!-- VTURB -->
-  <script type="text/javascript">
-    var s = document.createElement("script");
-    s.src = "https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/69e9389488365845bd02f872/v4/player.js";
-    s.async = !0;
-    document.head.appendChild(s);
-  </script>
+  <!-- VTURB script is loaded on demand by loadLesson() -->
+
 
   <script>
     // ===== MOBILE SIDEBAR =====
@@ -1487,7 +1741,46 @@
       }, 220);
 
       // Player swap
-      if (playerId) {
+      const lessonType = lesson.dataset.type;
+      const pdfUrl = lesson.dataset.pdfUrl;
+
+      if (lessonType === 'links') {
+        playerContainer.innerHTML = `
+          <div class="links-stage">
+            <div class="links-stage-head">
+              <div class="ico">→</div>
+              <div class="t">Tus enlaces oficiales</div>
+              <div class="s">Haz clic para abrir en una pestaña nueva</div>
+            </div>
+            <div class="links-stage-grid">
+              <a href="https://www.geraew.com.br/prompts" target="_blank" rel="noopener" class="links-stage-card">
+                <div class="num">i.</div>
+                <div class="info">
+                  <div class="name">GERAEW <em>· Prompts</em></div>
+                  <div class="url">geraew.com.br/prompts</div>
+                </div>
+                <span class="arrow">→</span>
+              </a>
+              <a href="https://www.notion.so/Influencer-A-I-de-300-Prompts-e833592045d282c19be401cde84caf4a" target="_blank" rel="noopener" class="links-stage-card">
+                <div class="num">ii.</div>
+                <div class="info">
+                  <div class="name">+300 Prompts <em>· Notion</em></div>
+                  <div class="url">notion · biblioteca completa</div>
+                </div>
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          </div>`;
+      } else if (lessonType === 'pdf' && pdfUrl) {
+        const safeUrl = pdfUrl.replace(/"/g, '&quot;');
+        playerContainer.innerHTML = `
+          <iframe class="pdf-viewer" src="${safeUrl}#toolbar=1&view=FitH" title="PDF"></iframe>
+          <div class="pdf-fallback" style="display:none;" id="pdf-fallback">
+            <div class="ico">¶</div>
+            <div style="font-family:'Geist Mono',monospace;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);">Tu navegador no muestra el PDF</div>
+            <a href="${safeUrl}" target="_blank" rel="noopener">Abrir PDF ↗</a>
+          </div>`;
+      } else if (playerId) {
         playerContainer.innerHTML = `<vturb-smartplayer id="vid-${playerId}" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>`;
         const sc = document.createElement('script');
         sc.src = `https://scripts.converteai.net/8961d838-aff2-4dce-9b39-e84022d332ce/players/${playerId}/v4/player.js`;
